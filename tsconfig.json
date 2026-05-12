@@ -3,7 +3,8 @@
     "outDir": "build",
     "module": "commonjs",
     "target": "es2019",
-    "strict": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["src/**/*.ts"]
 }
