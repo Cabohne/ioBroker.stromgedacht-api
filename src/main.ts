@@ -15,7 +15,7 @@ class StromGedacht extends utils.Adapter {
         await this.createStates();
         await this.updateData();
 
-        const interval = (this.config.updateInterval || 5) * 60 * 1000;
+        const interval = ((this.config as any).updateInterval || 5) * 60 * 1000;
         this.interval = setInterval(() => this.updateData(), interval);
     }
 
@@ -35,7 +35,7 @@ class StromGedacht extends utils.Adapter {
             await this.setStateAsync("current.text", data.current.text, true);
 
             if (data.forecast) {
-                for (let i=0;i<Math.min(data.forecast.length, this.config.forecastHours || 24);i++){
+                for (let i=0;i<Math.min(data.forecast.length, (this.config as any).forecastHours || 24);i++){
                     const f = data.forecast[i];
                     const base = `forecast.${i}`;
 
