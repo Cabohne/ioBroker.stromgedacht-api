@@ -27,12 +27,37 @@ class StromGedacht extends utils.Adapter {
 
     async updateData() {
         try {
-            const res = await axios.get("https://api.stromgedacht.de/v1/data");
+            const res = await axios.get(
+                "https://api.stromgedacht.de/v1/now?zip=70173",
+                {
+                    headers: {
+                        accept: "application/json"
+                    }
+                }
+            );
             const data = res.data;
 
-            await this.setStateAsync("current.level", data.current.level, true);
-            await this.setStateAsync("current.name", data.current.name, true);
-            await this.setStateAsync("current.text", data.current.text, true);
+            await this.setStateAsync("current.level", data.state, true);
+
+            let stateName = "unknown";
+            
+            switch (data.state) {
+                case -1:
+                    stateName = "supergreen";
+                    break;
+                case 1:
+                    stateName = "green";
+                    break;
+                case 3:
+                    stateName = "orange";
+                    break;
+                case 4:
+                    stateName = "red";
+                    break;
+            }
+            
+            await this.setStateAsync("current.name", stateName, true);
+            await this.setStateAsync("current.text", `Current state is ${stateName}`, true);
 
             if (data.forecast) {
                 for (let i=0;i<Math.min(data.forecast.length, (this.config as any).forecastHours || 24);i++){
