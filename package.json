@@ -5,6 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "build": "tsc",
+    "postinstall": "npm run build",
     "start": "node build/main.js",
     "check": "npx iobroker.adapter-check"
   },
@@ -14,10 +15,5 @@
   },
   "devDependencies": {
     "typescript": "^5.0.0"
-  }
-  "scripts": {
-  "build": "tsc",
-  "postinstall": "npm run build",
-  "start": "node build/main.js"
   }
 }
