@@ -139,8 +139,6 @@ class StromGedacht extends utils.Adapter {
     }
 
     async updateData() {
-async updateData() {
-
          try {
         
                 const zip = (this.config as any).zip || "70173";
