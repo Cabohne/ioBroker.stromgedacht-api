@@ -255,12 +255,12 @@ class StromGedacht extends utils.Adapter {
                     }
                 }
         
-            } catch (e) {
+            } 
+             catch (e) {
         
                 this.log.error("API error: " + e);
             }
         }
-    }
 
     onUnload(callback: () => void) {
         if (this.interval) clearInterval(this.interval);
