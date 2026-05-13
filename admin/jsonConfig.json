@@ -1,12 +1,17 @@
 {
   "type": "panel",
   "items": {
+    "zip": {
+      "type": "text",
+      "label": "Postleitzahl",
+      "default": "70173"
+    },
     "updateInterval": {
       "type": "number",
       "label": "Update-Intervall (Minuten)",
-      "min": 1,
-      "max": 60,
-      "default": 5
+      "min": 10,
+      "max": 600,
+      "default": 10
     },
     "forecastHours": {
       "type": "number",
