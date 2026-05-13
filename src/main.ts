@@ -235,8 +235,18 @@ class StromGedacht extends utils.Adapter {
                     await this.setStateAsync(base + ".from", item.from, true);
                     await this.setStateAsync(base + ".to", item.to, true);
         
-                    const from = new Date(item.from);
-                    const to = new Date(item.to);
+                    const fromString = item.from.replace(
+                        /(\.\d{3})\d+/,
+                        "$1"
+                    );
+                    
+                    const toString = item.to.replace(
+                        /(\.\d{3})\d+/,
+                        "$1"
+                    );
+                    
+                    const from = new Date(fromString);
+                    const to = new Date(toString);
         
                     if (now >= from && now < to) {
         
