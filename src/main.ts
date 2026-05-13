@@ -28,13 +28,14 @@ class StromGedacht extends utils.Adapter {
     async updateData() {
         try {
             const res = await axios.get(
-                `https://api.stromgedacht.de/v1/now?zip=${(this.config as any).zip || "70173"},
+                `https://api.stromgedacht.de/v1/now?zip=${(this.config as any).zip || "70173"}`,
                 {
                     headers: {
                         accept: "application/json"
                     }
                 }
             );
+            
             const data = res.data;
 
             await this.setStateAsync("current.level", data.state, true);
