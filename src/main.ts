@@ -24,6 +24,28 @@ class StromGedacht extends utils.Adapter {
         this.interval = setInterval(() => this.updateData(), interval);
     }
 
+    async cleanupOldForecast() {
+
+        try {
+    
+            const objects = await this.getForeignObjectsAsync(
+                `${this.namespace}.forecast.*`
+            );
+    
+            for (const id of Object.keys(objects)) {
+    
+                await this.delObjectAsync(
+                    id.replace(`${this.namespace}.`, ""),
+                    { recursive: true }
+                );
+            }
+    
+        } catch (e) {
+    
+            this.log.warn("Could not cleanup old forecast objects: " + e);
+        }
+    }
+    
     async createStates() {
         await this.setObjectNotExistsAsync("current.level",{type:"state",common:{name:"Level",type:"number",role:"indicator",read:true,write:false},native:{}});
         await this.setObjectNotExistsAsync("current.name",{type:"state",common:{name:"Name",type:"string",role:"text",read:true,write:false},native:{}});
