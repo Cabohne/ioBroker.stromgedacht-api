@@ -157,7 +157,7 @@ class StromGedacht extends utils.Adapter {
                     }
                 });
         
-                const phases = res.data;
+                const phases = res.data.states;
                  this.log.info(JSON.stringify(res.data));
                 const now = new Date();
         
