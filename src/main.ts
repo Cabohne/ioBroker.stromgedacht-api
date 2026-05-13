@@ -48,6 +48,28 @@ class StromGedacht extends utils.Adapter {
                 this.log.warn("Could not cleanup old forecast objects: " + e);
             }
         }
+
+    async cleanupPhases() {
+    
+        try {
+    
+            const objects = await this.getForeignObjectsAsync(
+                `${this.namespace}.phases.*`
+            );
+    
+            for (const id of Object.keys(objects)) {
+    
+                await this.delObjectAsync(
+                    id.replace(`${this.namespace}.`, ""),
+                    { recursive: true }
+                );
+            }
+    
+        } catch (e) {
+    
+            this.log.warn("Could not cleanup phases: " + e);
+        }
+    }    
     
     async createStates() {
         await this.setObjectNotExistsAsync("info.zip",{type:"state",common:{name:"Configured ZIP code",type:"string",role:"info",read: true,write: false},native:{}});
@@ -140,6 +162,7 @@ class StromGedacht extends utils.Adapter {
 
     async updateData() {
          try {
+             await this.cleanupPhases();
         
                 const zip = (this.config as any).zip || "70173";
                 const hours = (this.config as any).forecastHours || 24;
@@ -158,7 +181,7 @@ class StromGedacht extends utils.Adapter {
                 });
         
                 const phases = res.data.states;
-                 this.log.info(JSON.stringify(res.data));
+             
                 const now = new Date();
         
                 for (let i = 0; i < phases.length; i++) {
