@@ -27,7 +27,8 @@
     }
   },
   "native": {
-    "updateInterval": 5,
+    "zip": "70173",
+    "updateInterval": 10,
     "forecastHours": 24
   }
 }
