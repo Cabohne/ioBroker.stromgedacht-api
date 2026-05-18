@@ -97,6 +97,18 @@ class StromGedacht extends utils.Adapter {
             },
             native: {}
         });
+
+        await this.setObjectNotExistsAsync("info.timelineJson", {
+            type: "state",
+            common: {
+                name: "Timeline JSON",
+                type: "string",
+                role: "json",
+                read: true,
+                write: false
+            },
+            native: {}
+        });
         
         await this.setObjectNotExistsAsync("current.state", {
             type: "state",
@@ -110,12 +122,48 @@ class StromGedacht extends utils.Adapter {
             native: {}
         });
         
-        await this.setObjectNotExistsAsync("current.name", {
+        await this.setObjectNotExistsAsync("current.stateText", {
             type: "state",
             common: {
-                name: "Current state name",
+                name: "State text",
                 type: "string",
                 role: "text",
+                read: true,
+                write: false
+            },
+            native: {}
+        });
+        
+        await this.setObjectNotExistsAsync("current.color", {
+            type: "state",
+            common: {
+                name: "Color",
+                type: "string",
+                role: "text",
+                read: true,
+                write: false
+            },
+            native: {}
+        });
+        
+        await this.setObjectNotExistsAsync("current.fromTimestamp", {
+            type: "state",
+            common: {
+                name: "From timestamp",
+                type: "number",
+                role: "value.time",
+                read: true,
+                write: false
+            },
+            native: {}
+        });
+        
+        await this.setObjectNotExistsAsync("current.toTimestamp", {
+            type: "state",
+            common: {
+                name: "To timestamp",
+                type: "number",
+                role: "value.time",
                 read: true,
                 write: false
             },
@@ -183,6 +231,8 @@ class StromGedacht extends utils.Adapter {
                 const phases = res.data.states;
              
                 const now = new Date();
+
+                const timeline: any[] = [];
         
                 for (let i = 0; i < phases.length; i++) {
         
@@ -195,6 +245,54 @@ class StromGedacht extends utils.Adapter {
                             name: "State",
                             type: "number",
                             role: "value",
+                            read: true,
+                            write: false
+                        },
+                        native: {}
+                    });
+
+                    await this.setObjectNotExistsAsync(base + ".stateText", {
+                        type: "state",
+                        common: {
+                            name: "State text",
+                            type: "string",
+                            role: "text",
+                            read: true,
+                            write: false
+                        },
+                        native: {}
+                    });
+                    
+                    await this.setObjectNotExistsAsync(base + ".color", {
+                        type: "state",
+                        common: {
+                            name: "Color",
+                            type: "string",
+                            role: "text",
+                            read: true,
+                            write: false
+                        },
+                        native: {}
+                    });
+                    
+                    await this.setObjectNotExistsAsync(base + ".fromTimestamp", {
+                        type: "state",
+                        common: {
+                            name: "From timestamp",
+                            type: "number",
+                            role: "value.time",
+                            read: true,
+                            write: false
+                        },
+                        native: {}
+                    });
+                    
+                    await this.setObjectNotExistsAsync(base + ".toTimestamp", {
+                        type: "state",
+                        common: {
+                            name: "To timestamp",
+                            type: "number",
+                            role: "value.time",
                             read: true,
                             write: false
                         },
@@ -237,25 +335,37 @@ class StromGedacht extends utils.Adapter {
                         native: {}
                     });
         
-                    let stateName = "unknown";
+                    let stateText = "unbekannt";
+                    let color = "#9e9e9e";
         
                     switch (item.state) {
-                        case -1:
-                            stateName = "supergreen";
-                            break;
-                        case 1:
-                            stateName = "green";
-                            break;
-                        case 3:
-                            stateName = "orange";
-                            break;
-                        case 4:
-                            stateName = "red";
-                            break;
+
+                            case -1:
+                                stateText = "supergrün";
+                                color = "#00c853";
+                                break;
+                        
+                            case 1:
+                                stateText = "grün";
+                                color = "#64dd17";
+                                break;
+                        
+                            case 3:
+                                stateText = "orange";
+                                color = "#ff9800";
+                                break;
+                        
+                            case 4:
+                                stateText = "rot";
+                                color = "#d50000";
+                                break;
                     }
         
                     await this.setStateAsync(base + ".state", item.state, true);
-                    await this.setStateAsync(base + ".name", stateName, true);
+                    await this.setStateAsync(base + ".stateText", stateText, true);
+                    await this.setStateAsync(base + ".color", color, true);
+                    await this.setStateAsync(base + ".fromTimestamp", from.getTime(), true);
+                    await this.setStateAsync(base + ".toTimestamp", to.getTime(), true);
                     await this.setStateAsync(base + ".from", item.from, true);
                     await this.setStateAsync(base + ".to", item.to, true);
         
@@ -271,6 +381,14 @@ class StromGedacht extends utils.Adapter {
                     
                     const from = new Date(fromString);
                     const to = new Date(toString);
+
+                    timeline.push({
+                        from: from.getTime(),
+                        to: to.getTime(),
+                        state: item.state,
+                        stateText: stateText,
+                        color: color
+                    });
         
                     if (now >= from && now < to) {
         
@@ -278,17 +396,20 @@ class StromGedacht extends utils.Adapter {
                             Math.round((to.getTime() - now.getTime()) / 60000);
         
                         await this.setStateAsync("current.state", item.state, true);
-                        await this.setStateAsync("current.name", stateName, true);
+                        await this.setStateAsync("current.stateText", stateText, true);
+                        await this.setStateAsync("current.color", color, true);
+                        await this.setStateAsync("current.fromTimestamp", from.getTime(), true);
+                        await this.setStateAsync("current.toTimestamp", to.getTime(), true);
                         await this.setStateAsync("current.from", item.from, true);
                         await this.setStateAsync("current.to", item.to, true);
-                        await this.setStateAsync(
-                            "current.remainingMinutes",
-                            remainingMinutes,
-                            true
-                        );
+                        await this.setStateAsync("current.remainingMinutes", remainingMinutes, true);
                     }
                 }
-        
+                await this.setStateAsync(
+                    "info.timelineJson",
+                    JSON.stringify(timeline),
+                    true
+                );
             } 
              catch (e) {
         
