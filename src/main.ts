@@ -298,19 +298,7 @@ class StromGedacht extends utils.Adapter {
                         },
                         native: {}
                     });
-        
-                    await this.setObjectNotExistsAsync(base + ".name", {
-                        type: "state",
-                        common: {
-                            name: "State name",
-                            type: "string",
-                            role: "text",
-                            read: true,
-                            write: false
-                        },
-                        native: {}
-                    });
-        
+     
                     await this.setObjectNotExistsAsync(base + ".from", {
                         type: "state",
                         common: {
@@ -364,8 +352,6 @@ class StromGedacht extends utils.Adapter {
                     await this.setStateAsync(base + ".state", item.state, true);
                     await this.setStateAsync(base + ".stateText", stateText, true);
                     await this.setStateAsync(base + ".color", color, true);
-                    await this.setStateAsync(base + ".fromTimestamp", from.getTime(), true);
-                    await this.setStateAsync(base + ".toTimestamp", to.getTime(), true);
                     await this.setStateAsync(base + ".from", item.from, true);
                     await this.setStateAsync(base + ".to", item.to, true);
         
@@ -381,7 +367,10 @@ class StromGedacht extends utils.Adapter {
                     
                     const from = new Date(fromString);
                     const to = new Date(toString);
-
+                    
+                    await this.setStateAsync(base + ".fromTimestamp", from.getTime(), true);
+                    await this.setStateAsync(base + ".toTimestamp", to.getTime(), true);
+                    
                     timeline.push({
                         from: from.getTime(),
                         to: to.getTime(),
