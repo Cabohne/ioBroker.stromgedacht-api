@@ -8,9 +8,11 @@
       "de": "StromGedacht API Adapter"
     },
     "authors": [
-      "Your Name <mail@example.com>"
+      "Cabohne"
     ],
     "license": "MIT",
+    "icon": "stromgedacht.png",
+    "extIcon": "https://raw.githubusercontent.com/Cabohne/iobroker.stromgedacht/main/admin/stromgedacht.png",
     "mode": "daemon",
     "platform": "Javascript/Node.js",
     "schedule": "*/5 * * * *",
