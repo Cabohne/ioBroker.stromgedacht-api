@@ -1,5 +1,7 @@
 
 # ioBroker.stromgedacht
+
+(icon)  
 Adapter für die StromGedacht API.  
 Dieser Adapter nutzt öffentliche Daten, die von StromGedacht / TransnetBW GmbH [https://api.stromgedacht.de](https://api.stromgedacht.de) bereitgestellt werden.  
 StromGedacht ist eine Marke der TransnetBW GmbH.  
@@ -13,9 +15,20 @@ Dieses Projekt steht in keiner offiziellen Verbindung zu TransnetBW und wird von
 - Konfigurierbares Intervall
 
 ## Installation
-- (1) iobroker GUI mit Expertenmodus aktiv
-- (2) Adapter Installation "Installieren aus eigener URL" (Katze)
-- (3) Benutzerdefiniert -> URL: https://github.com/Cabohne/iobroker.stromgedacht
+1. iobroker GUI mit Expertenmodus aktiv
+2. Adapter Installation "Installieren aus eigener URL" (Katze)
+3. Benutzerdefiniert -> URL: https://github.com/Cabohne/iobroker.stromgedacht
+4. Instanz hinzufügen
+5. Instanz konfigurieren
+
+## Konfiguration
+tbd
+
+## Objekte
+tbd
+
+## Vis Beispiel
+tbd
 
 ## Version
 0.2.0
