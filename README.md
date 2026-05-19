@@ -1,8 +1,10 @@
 
 # ioBroker.stromgedacht
 Adapter für die StromGedacht API.
-Daten werden bereitgestellt von StromGedacht, TransnetBW GmbH [https://api.stromgedacht.de](https://api.stromgedacht.de)
+Dieser Adapter nutzt öffentliche Daten, die von StromGedacht / TransnetBW GmbH [https://api.stromgedacht.de](https://api.stromgedacht.de) bereitgestellt werden.
+StromGedacht ist eine Marke der TransnetBW GmbH.
 Die Nutzung der API und mittels der API bereitgestellten Daten ist kostenfrei und nur zu privaten Zwecken ohne Gewinnerzielungsabsicht gestattet.
+Dieses Projekt steht in keiner offiziellen Verbindung zu TransnetBW und wird von TransnetBW nicht unterstützt.
 
 ## Features
 - Zip-Code konfigurierbar
