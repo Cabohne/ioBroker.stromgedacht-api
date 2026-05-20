@@ -10,7 +10,7 @@ Die Nutzung der API und mittels der API bereitgestellten Daten ist kostenfrei un
 Dieses Projekt steht in keiner offiziellen Verbindung zu TransnetBW und wird von TransnetBW nicht unterstützt.
 Weitere Infos, siehe auch [stromgedacht.de](https://www.stromgedacht.de/)
 
-## Features
+## Adapter Features
 - Aktueller Status des Stromnetzes
 - verbleibende Zeit vom aktuellen Status
 - Vorhersage Daten für den Status
@@ -18,7 +18,7 @@ Weitere Infos, siehe auch [stromgedacht.de](https://www.stromgedacht.de/)
 - Konfigurierbares Intervall für Datenabfrage
 - JSON Datenpunkt z.B. zur Darstellung in VIS
 
-## Installation
+## Adapter Installation
 1. iobroker GUI mit Expertenmodus aktiv
 2. Adapter Installation "Installieren aus eigener URL" (Katze)
 3. Benutzerdefiniert -> URL: https://github.com/Cabohne/iobroker.stromgedacht
