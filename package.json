@@ -7,18 +7,17 @@
     "build": "tsc",
     "postinstall": "npm run build",
     "start": "node build/main.js",
-    "check": "npm run test:package",
     "check": "npx iobroker.adapter-check",
     "test": "npm run test:package",
     "test:package": "mocha test/package --exit"
   },
   "dependencies": {
-    "axios": "^1.6.0",
-    "@iobroker/adapter-core": "^3.2.0"
+    "@iobroker/adapter-core": "^3.2.0",
+    "axios": "^1.6.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
+    "@iobroker/testing": "^5.2.2",
     "@types/node": "^22.0.0",
-    "@iobroker/testing": "^5.0.0"
+    "typescript": "^5.0.0"
   }
 }
