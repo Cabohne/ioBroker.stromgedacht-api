@@ -749,6 +749,10 @@ Weitere Infos, siehe auch [stromgedacht.de](https://www.stromgedacht.de/)
 }
 ```
 </details>
+<details>
+<summary>Screenshot der Objekte</summary>
+    <img src="admin/ScreenshotObjects.png">
+</details>
 
 ## Vis Beispiel
 <img src="admin/VisExample.png">
