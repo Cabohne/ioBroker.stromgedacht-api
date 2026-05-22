@@ -1,6 +1,12 @@
 {
   "name": "iobroker.stromgedacht",
   "version": "0.2.0",
+  "author": "Cabohne",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cabohne/iobroker.stromgedacht"
+  },
   "description": "ioBroker adapter for StromGedacht API",
   "main": "build/main.js",
   "scripts": {
