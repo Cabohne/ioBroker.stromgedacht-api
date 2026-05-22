@@ -7,6 +7,7 @@
       "en": "StromGedacht",
       "de": "StromGedacht"
     },
+    "tier": 3,
     "type": "energy",
     "desc": {
       "en": "StromGedacht API adapter",
