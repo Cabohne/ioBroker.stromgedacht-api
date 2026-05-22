@@ -17,7 +17,7 @@
       "Cabohne"
     ],
     "license": "MIT",
-    "icon": "stromgedacht.png",
+    "icon": "admin/stromgedacht.png",
     "extIcon": "https://raw.githubusercontent.com/Cabohne/iobroker.stromgedacht/main/admin/stromgedacht.png",
     "mode": "daemon",
     "platform": "Javascript/Node.js",
