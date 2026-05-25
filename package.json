@@ -27,7 +27,7 @@
     "node": ">=20"
   },
   "keywords": [
-    "iobroker",
+    "ioBroker",
     "stromgedacht",
     "energy",
     "electricity",
