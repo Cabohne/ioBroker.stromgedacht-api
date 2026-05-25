@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cabohne/iobroker.stromgedacht"
+    "url": "git+https://github.com/Cabohne/iobroker.stromgedacht.git"
   },
   "description": "ioBroker adapter for StromGedacht API",
   "main": "src/main.ts",
@@ -15,12 +15,23 @@
     "test:package": "mocha test/package --exit"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.2.0",
+    "@iobroker/adapter-core": "^3.3.2",
     "axios": "^1.6.0"
   },
   "devDependencies": {
     "@iobroker/testing": "^5.2.2",
     "@types/node": "^22.0.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "iobroker",
+    "stromgedacht",
+    "energy",
+    "electricity",
+    "forecast",
+    "transnetbw"
+  ]
 }
