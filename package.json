@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cabohne/iobroker.stromgedacht.git"
+    "url": "https://github.com/Cabohne/ioBroker.stromgedacht.git"
   },
   "description": "ioBroker adapter for StromGedacht API",
   "main": "src/main.ts",
