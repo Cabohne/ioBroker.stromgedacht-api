@@ -20,8 +20,8 @@
       "type": "free",
       "license": "MIT"
     },
-    "icon": "admin/stromgedacht.png",
-    "extIcon": "https://raw.githubusercontent.com/Cabohne/iobroker.stromgedacht/main/admin/stromgedacht.png",
+    "icon": "stromgedacht.png",
+    "extIcon": "https://raw.githubusercontent.com/Cabohne/ioBroker.stromgedacht/main/admin/stromgedacht.png",
     "mode": "daemon",
     "dependencies": [
       {
