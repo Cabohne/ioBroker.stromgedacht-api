@@ -63,8 +63,8 @@ jobs:
       - name: Build adapter
         run: npm run build
 
-      - name: Run tests
-        run: npm test
+      - name: Run package tests
+        run: npm run test:package
 
   deploy:
     needs:
