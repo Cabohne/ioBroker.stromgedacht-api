@@ -1,8 +1,8 @@
 name: Test and Release
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+#concurrency:
+#  group: ${{ github.workflow }}-${{ github.ref }}
+#  cancel-in-progress: true
 
 on:
   push:
@@ -14,6 +14,11 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+-**'
 
   pull_request:
+
+# Cancel previous PR/branch runs when a new commit is pushed
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check-and-lint:
