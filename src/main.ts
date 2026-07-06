@@ -71,7 +71,7 @@ class StromGedacht extends utils.Adapter {
         }
     }    
     
-    async createStates() {
+    async ) {
         await this.setObjectNotExistsAsync("info.zip",{type:"state",common:{name:"Configured ZIP code",type:"string",role:"info",read: true,write: false},native:{}});
 
         await this.setObjectNotExistsAsync("info.forecastHours", {
@@ -104,6 +104,18 @@ class StromGedacht extends utils.Adapter {
                 name: "Timeline JSON",
                 type: "string",
                 role: "json",
+                read: true,
+                write: false
+            },
+            native: {}
+        });
+
+        await this.setObjectNotExistsAsync("info.phasesCounter", {
+            type: "state",
+            common: {
+                name: "Number of forecast phases",
+                type: "number",
+                role: "value",
                 read: true,
                 write: false
             },
@@ -250,6 +262,12 @@ class StromGedacht extends utils.Adapter {
                 });
         
                 const phases = res.data.states;
+
+                 await this.setStateAsync(
+                    "info.phasesCounter",
+                    phases.length,
+                    true
+                 );
              
                 const now = new Date();
 
