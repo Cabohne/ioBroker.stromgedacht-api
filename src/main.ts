@@ -71,7 +71,7 @@ class StromGedacht extends utils.Adapter {
         }
     }    
     
-    async ) {
+    async  createStates() {
         await this.setObjectNotExistsAsync("info.zip",{type:"state",common:{name:"Configured ZIP code",type:"string",role:"info",read: true,write: false},native:{}});
 
         await this.setObjectNotExistsAsync("info.forecastHours", {
