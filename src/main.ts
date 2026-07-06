@@ -207,7 +207,28 @@ class StromGedacht extends utils.Adapter {
             native: {}
         });
     }
-
+    
+    private formatDateGerman(date: Date): string {
+    
+        const weekdays = [
+            "Sonntag",
+            "Montag",
+            "Dienstag",
+            "Mittwoch",
+            "Donnerstag",
+            "Freitag",
+            "Samstag"
+        ];
+    
+        const weekday = weekdays[date.getDay()];
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const hour = String(date.getHours()).padStart(2, "0");
+        const minute = String(date.getMinutes()).padStart(2, "0");
+    
+        return `${weekday}, ${day}.${month}., ${hour}:${minute} Uhr`;
+    }
+    
     async updateData() {
          try {
              await this.cleanupPhases();
@@ -352,8 +373,8 @@ class StromGedacht extends utils.Adapter {
                     await this.setStateAsync(base + ".state", item.state, true);
                     await this.setStateAsync(base + ".stateText", stateText, true);
                     await this.setStateAsync(base + ".color", color, true);
-                    await this.setStateAsync(base + ".from", item.from, true);
-                    await this.setStateAsync(base + ".to", item.to, true);
+                    await this.setStateAsync(base + ".from", this.formatDateGerman(from), true);
+                    await this.setStateAsync(base + ".to", this.formatDateGerman(to), true);
         
                     const fromString = item.from.replace(
                         /(\.\d{3})\d+/,
@@ -389,8 +410,8 @@ class StromGedacht extends utils.Adapter {
                         await this.setStateAsync("current.color", color, true);
                         await this.setStateAsync("current.fromTimestamp", from.getTime(), true);
                         await this.setStateAsync("current.toTimestamp", to.getTime(), true);
-                        await this.setStateAsync("current.from", item.from, true);
-                        await this.setStateAsync("current.to", item.to, true);
+                        await this.setStateAsync("current.from", this.formatDateGerman(from), true);
+                        await this.setStateAsync("current.to", this.formatDateGerman(to), true);
                         await this.setStateAsync("current.remainingMinutes", remainingMinutes, true);
                     }
                 }
