@@ -208,7 +208,7 @@ class StromGedacht extends utils.Adapter {
         });
     }
     
-    private formatDate(date: Date): string {
+    private formatDateGerman(date: Date): string {
     
         const weekdays = [
             "Sonntag",
@@ -373,8 +373,8 @@ class StromGedacht extends utils.Adapter {
                     await this.setStateAsync(base + ".state", item.state, true);
                     await this.setStateAsync(base + ".stateText", stateText, true);
                     await this.setStateAsync(base + ".color", color, true);
-                    await this.setStateAsync(base + ".from", this.formatDate(from), true);
-                    await this.setStateAsync(base + ".to", this.formatDate(to), true);
+                    await this.setStateAsync(base + ".from", this.formatDateGerman(from), true);
+                    await this.setStateAsync(base + ".to", this.formatDateGerman(to), true);
         
                     const fromString = item.from.replace(
                         /(\.\d{3})\d+/,
@@ -410,8 +410,8 @@ class StromGedacht extends utils.Adapter {
                         await this.setStateAsync("current.color", color, true);
                         await this.setStateAsync("current.fromTimestamp", from.getTime(), true);
                         await this.setStateAsync("current.toTimestamp", to.getTime(), true);
-                        await this.setStateAsync("current.from", this.formatDate(from), true);
-                        await this.setStateAsync("current.to", this.formatDate(to), true);
+                        await this.setStateAsync("current.from", this.formatDateGerman(from), true);
+                        await this.setStateAsync("current.to", this.formatDateGerman(to), true);
                         await this.setStateAsync("current.remainingMinutes", remainingMinutes, true);
                     }
                 }
